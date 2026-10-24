@@ -23,5 +23,15 @@ resultado = cadastrarProduto({
 });
 console.log(resultado.mensagem);
 
+console.log("=== Teste inválido: id repetido ===");
+resultado = cadastrarProduto({
+    id: 1,
+    nome: "Repetido",
+    categoria: "Cadernos",
+    preco: 10,
+    estoque: 5,
+});
+console.log(resultado.mensagem);
+
 console.log("=== Lista de Produtos ===");
 console.log(listarProdutos());
