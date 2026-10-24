@@ -8,7 +8,7 @@ exports.filtrarPorCategoria = filtrarPorCategoria;
 exports.atualizarProduto = atualizarProduto;
 exports.removerProduto = removerProduto;
 // Lista de produtos: começa vazia.
-const produtos = [
+let produtos = [
     { id: 1, nome: "Caderno Argolado Floral", categoria: "Cadernos", preco: 39.9, estoque: 20 },
     { id: 2, nome: "Caneta Gel Pastel (kit 6)", categoria: "Canetas", preco: 24.9, estoque: 35 },
     { id: 3, nome: "Planner Semanal 2027", categoria: "Organização", preco: 49.9, estoque: 15 },
@@ -44,9 +44,15 @@ function cadastrarProduto(produto) {
 function listarProdutos() {
     return produtos;
 }
-// Procura produtos pelo nome (ou parte dele)
-function buscarProdutosPorNome(trecho) {
-    return [];
+// Procura produtos pelo nome (nome completo)
+function buscarProdutosPorNome(nome) {
+    const resultado = [];
+    for (const produto of produtos) {
+        if (produto.nome === nome) {
+            resultado.push(produto);
+        }
+    }
+    return resultado;
 }
 // Lista só os produtos de uma categoria
 function filtrarPorCategoria(categoria) {
@@ -68,7 +74,7 @@ function atualizarProduto(id, nome, categoria, preco, estoque) {
         return { sucesso: false, mensagem: "Erro: o nome não pode estar vazio." };
     }
     if (preco <= 0) {
-        return { sucesso: false, mensagem: "Erro: o preço dever maior que zero." };
+        return { sucesso: false, mensagem: "Erro: o preço deve ser maior que zero." };
     }
     if (estoque < 0) {
         return { sucesso: false, mensagem: "Erro: o estoque não deve ser negativo." };
@@ -81,5 +87,19 @@ function atualizarProduto(id, nome, categoria, preco, estoque) {
 }
 // Remove um produto (só se o estoque estiver zerado)
 function removerProduto(id) {
-    return { sucesso: false, mensagem: "A fazer" };
+    const produto = buscarProdutoPorId(id);
+    if (produto === undefined) {
+        return { sucesso: false, mensagem: "Erro: produto não encontrado." };
+    }
+    if (produto.estoque > 0) {
+        return { sucesso: false, mensagem: "Erro: só é possível remover produtos com estoque zerado." };
+    }
+    const novaLista = [];
+    for (const item of produtos) {
+        if (item.id !== id) {
+            novaLista.push(item);
+        }
+    }
+    produtos = novaLista;
+    return { sucesso: true, mensagem: "Produto removido com sucesso!" };
 }
