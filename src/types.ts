@@ -33,3 +33,9 @@ export type Pedido = {
   total: number;
   data: Date;
 };
+
+// Resultado de uma operação: deu certo ou não, e a mensagem para mostrar
+export type Resultado = {
+  sucesso: boolean;
+  mensagem: string;
+};
