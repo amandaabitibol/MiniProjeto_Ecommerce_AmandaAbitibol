@@ -26,7 +26,20 @@ function buscarProdutoPorId(id) {
 }
 // Cadastra um novo produto 
 function cadastrarProduto(produto) {
-    return { sucesso: false, mensagem: "A fazer" };
+    if (buscarProdutoPorId(produto.id) !== undefined) {
+        return { sucesso: false, mensagem: "Erro: já existe um produto com esse id." };
+    }
+    if (produto.nome === "") {
+        return { sucesso: false, mensagem: "Erro: o nome não pode estar vazio." };
+    }
+    if (produto.preco <= 0) {
+        return { sucesso: false, mensagem: "Erro: o preço deve ser maior que zero." };
+    }
+    if (produto.estoque < 0) {
+        return { sucesso: false, mensagem: "Erro: o estoque não pode ser negativo." };
+    }
+    produtos.push(produto);
+    return { sucesso: true, mensagem: "Produto cadastrado com sucesso!" };
 }
 function listarProdutos() {
     return produtos;
