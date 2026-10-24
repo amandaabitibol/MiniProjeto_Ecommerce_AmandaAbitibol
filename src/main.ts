@@ -47,3 +47,6 @@ console.log(resultado.mensagem);
 
 console.log("=== Lista de Produtos ===");
 console.log(listarProdutos());
+
+console.log("Caderno Argolado".includes("Arg"));
+console.log("Caderno Argolado".includes("Planner"));

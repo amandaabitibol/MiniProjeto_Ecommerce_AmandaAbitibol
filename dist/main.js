@@ -41,3 +41,5 @@ resultado = (0, produtos_1.atualizarProduto)(99, "Fantasma", "Canetas", 10, 5);
 console.log(resultado.mensagem);
 console.log("=== Lista de Produtos ===");
 console.log((0, produtos_1.listarProdutos)());
+console.log("Caderno Argolado".includes("Arg"));
+console.log("Caderno Argolado".includes("Planner"));
