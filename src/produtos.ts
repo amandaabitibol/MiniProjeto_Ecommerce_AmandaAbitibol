@@ -67,7 +67,26 @@ export function atualizarProduto(
   preco: number,
   estoque: number
 ): Resultado {
-  return { sucesso: false, mensagem: "A fazer" };
+    const produto = buscarProdutoPorId(id);
+    if (produto === undefined) {
+        return { sucesso: false, mensagem: "Erro: produto não encontrado."};
+    }
+    if (nome === "") {
+        return { sucesso: false, mensagem: "Erro: o nome não pode estar vazio."};
+    }
+    if (preco <= 0) {
+        return { sucesso: false, mensagem: "Erro: o preço dever maior que zero."};
+    }
+    if (estoque < 0) {
+       return { sucesso: false, mensagem: "Erro: o estoque não deve ser negativo."}; 
+    }
+
+    produto.nome = nome;
+    produto.categoria = categoria;
+    produto.preco = preco;
+    produto.estoque = estoque;
+    return { sucesso: true, mensagem: "Produto atualizado com sucesso" };
+  
 }
 
 // Remove um produto (só se o estoque estiver zerado)

@@ -1,4 +1,4 @@
-import { listarProdutos, buscarProdutoPorId, cadastrarProduto, filtrarPorCategoria } from "./produtos";
+import { listarProdutos, buscarProdutoPorId, cadastrarProduto, filtrarPorCategoria, atualizarProduto } from "./produtos";
 
 console.log("=== Busca por id 2 ===");
 console.log(buscarProdutoPorId(2));
@@ -35,6 +35,15 @@ console.log(resultado.mensagem);
 
 console.log("=== Categoria Cadernos ===");
 console.log(filtrarPorCategoria("Cadernos"));
+
+console.log("=== Atualizando o preço do produto 6 ===");
+resultado = atualizarProduto(6, "Washi Tape Aquarela", "Decoração", 14.9, 40);
+console.log(resultado.mensagem);
+console.log(buscarProdutoPorId(6));
+
+console.log("=== Teste inválido: atualizar produto que não existe ===");
+resultado = atualizarProduto(99, "Fantasma", "Canetas", 10, 5);
+console.log(resultado.mensagem);
 
 console.log("=== Lista de Produtos ===");
 console.log(listarProdutos());

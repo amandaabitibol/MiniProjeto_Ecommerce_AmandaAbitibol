@@ -32,5 +32,12 @@ resultado = (0, produtos_1.cadastrarProduto)({
 console.log(resultado.mensagem);
 console.log("=== Categoria Cadernos ===");
 console.log((0, produtos_1.filtrarPorCategoria)("Cadernos"));
+console.log("=== Atualizando o preço do produto 6 ===");
+resultado = (0, produtos_1.atualizarProduto)(6, "Washi Tape Aquarela", "Decoração", 14.9, 40);
+console.log(resultado.mensagem);
+console.log((0, produtos_1.buscarProdutoPorId)(6));
+console.log("=== Teste inválido: atualizar produto que não existe ===");
+resultado = (0, produtos_1.atualizarProduto)(99, "Fantasma", "Canetas", 10, 5);
+console.log(resultado.mensagem);
 console.log("=== Lista de Produtos ===");
 console.log((0, produtos_1.listarProdutos)());
