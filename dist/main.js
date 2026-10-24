@@ -30,5 +30,7 @@ resultado = (0, produtos_1.cadastrarProduto)({
     estoque: 5,
 });
 console.log(resultado.mensagem);
+console.log("=== Categoria Cadernos ===");
+console.log((0, produtos_1.filtrarPorCategoria)("Cadernos"));
 console.log("=== Lista de Produtos ===");
 console.log((0, produtos_1.listarProdutos)());

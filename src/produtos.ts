@@ -49,7 +49,14 @@ export function buscarProdutosPorNome(trecho: string): Produto[] {
 
 // Lista só os produtos de uma categoria
 export function filtrarPorCategoria(categoria: string): Produto[] {
-  return [];
+    const resultado: Produto[] = [];
+
+    for (const produto of produtos) {
+        if (produto.categoria === categoria) {
+            resultado.push(produto);
+        }
+    }
+    return resultado;
 }
 
 // Altera os dados de um produto

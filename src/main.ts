@@ -1,4 +1,4 @@
-import { listarProdutos, buscarProdutoPorId, cadastrarProduto } from "./produtos";
+import { listarProdutos, buscarProdutoPorId, cadastrarProduto, filtrarPorCategoria } from "./produtos";
 
 console.log("=== Busca por id 2 ===");
 console.log(buscarProdutoPorId(2));
@@ -32,6 +32,9 @@ resultado = cadastrarProduto({
     estoque: 5,
 });
 console.log(resultado.mensagem);
+
+console.log("=== Categoria Cadernos ===");
+console.log(filtrarPorCategoria("Cadernos"));
 
 console.log("=== Lista de Produtos ===");
 console.log(listarProdutos());

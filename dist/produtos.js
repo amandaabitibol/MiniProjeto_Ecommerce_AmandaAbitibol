@@ -50,7 +50,13 @@ function buscarProdutosPorNome(trecho) {
 }
 // Lista só os produtos de uma categoria
 function filtrarPorCategoria(categoria) {
-    return [];
+    const resultado = [];
+    for (const produto of produtos) {
+        if (produto.categoria === categoria) {
+            resultado.push(produto);
+        }
+    }
+    return resultado;
 }
 // Altera os dados de um produto
 function atualizarProduto(id, nome, categoria, preco, estoque) {
