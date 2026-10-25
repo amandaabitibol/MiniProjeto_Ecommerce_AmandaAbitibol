@@ -86,10 +86,18 @@ export function listarCarrinho(): ItemCarrinho[] {
 
 //Preço do produto x quantidade
 export function calcularSubtotal(item: ItemCarrinho): number {
-    return 0
+    const produto = buscarProdutoPorId(item.produtoId);
+    if (produto === undefined) {
+        return 0;
+    }
+    return produto.preco * item.quantidade;
 }
 
 //Soma de todos os subtotais
 export function calcularTotal(): number {
-    return 0;
+    let total = 0;
+    for (const item of carrinho) {
+        total = total + calcularSubtotal(item);
+    }
+    return total;
 }

@@ -8,7 +8,7 @@ import {
   removerProduto,
 } from "./produtos";
 
-import { adicionarAoCarrinho, listarCarrinho, removerDoCarrinho, alterarQuantidade } from "./carrinho";
+import { adicionarAoCarrinho, listarCarrinho, removerDoCarrinho, alterarQuantidade, calcularSubtotal, calcularTotal } from "./carrinho";
 
 console.log("=== Busca por id 2 ===");
 console.log(buscarProdutoPorId(2));
@@ -122,3 +122,15 @@ console.log(resultado.mensagem);
 
 console.log("--- Carrinho depois das mudanças ---");
 console.log(listarCarrinho());
+
+console.log("--- Adicionando 4 unidades do produto 4 ---");
+resultado = adicionarAoCarrinho(4, 4);
+console.log(resultado.mensagem);
+
+console.log("--- Subtotal de cada item ---");
+for (const item of listarCarrinho()) {
+  console.log("Produto " + item.produtoId + " x " + item.quantidade + " = R$ " + calcularSubtotal(item));
+}
+
+console.log("--- Total da compra ---");
+console.log("R$ " + calcularTotal());
