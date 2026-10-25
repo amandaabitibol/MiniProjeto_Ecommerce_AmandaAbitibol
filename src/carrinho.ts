@@ -101,3 +101,8 @@ export function calcularTotal(): number {
     }
     return total;
 }
+
+// Esvazia o caerrinho (usado depois de finalizar um pedido)
+export function limparCarrinho(): void {
+    carrinho = [];
+}

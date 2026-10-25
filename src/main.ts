@@ -10,6 +10,8 @@ import {
 
 import { adicionarAoCarrinho, listarCarrinho, removerDoCarrinho, alterarQuantidade, calcularSubtotal, calcularTotal } from "./carrinho";
 
+import { finalizarPedido, listarPedidos } from "./pedidos";
+
 console.log("=== Busca por id 2 ===");
 console.log(buscarProdutoPorId(2));
 
@@ -134,3 +136,28 @@ for (const item of listarCarrinho()) {
 
 console.log("--- Total da compra ---");
 console.log("R$ " + calcularTotal());
+
+console.log("");
+console.log("=== PEDIDOS ===");
+
+console.log("--- Teste inválido: cliente que não existe ---");
+resultado = finalizarPedido(99);
+console.log(resultado.mensagem);
+
+console.log("--- Produto 1 ANTES do pedido ---");
+console.log(buscarProdutoPorId(1));
+
+console.log("--- Finalizando o pedido do cliente 1 ---");
+resultado = finalizarPedido(1);
+console.log(resultado.mensagem);
+
+console.log("--- Produto 1 DEPOIS do pedido ---");
+console.log(buscarProdutoPorId(1));
+
+console.log("--- Teste inválido: finalizar com o carrinho vazio ---");
+resultado = finalizarPedido(1);
+console.log(resultado.mensagem);
+
+console.log("--- Pedidos registrados ---");
+console.log(listarPedidos());
+
