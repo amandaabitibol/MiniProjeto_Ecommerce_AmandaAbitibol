@@ -41,7 +41,7 @@ export function finalizarPedido(clienteId: number): Resultado {
         const produto = buscarProdutoPorId(item.produtoId);
         if (produto !== undefined) {
             itensPedido.push({
-                produtoID: item.produtoId,
+                produtoId: item.produtoId,
                 quantidade: item.quantidade,
                 precoUnitario: produto.preco,
             })
@@ -60,7 +60,7 @@ export function finalizarPedido(clienteId: number): Resultado {
     //6) Registra o pedido e esvazia o carrinho
     const pedido: Pedido = {
         id: proximoId,
-        clienteID: clienteId,
+        clienteId: clienteId,
         itens: itensPedido,
         total: total,
         data: new Date(),

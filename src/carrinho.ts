@@ -7,7 +7,7 @@ let carrinho: ItemCarrinho[] = [];
 //Adiciona um produto (se já estiver no carrinho, soma a quantidade)
 export function adicionarAoCarrinho(produtoId: number, quantidade: number): Resultado {
     if (quantidade <= 0) {
-        return { sucesso: false, mensagem: "Erro: a quantidade deve ser mairo que zero." };
+        return { sucesso: false, mensagem: "Erro: a quantidade deve ser maior que zero." };
     }
 
     const produto = buscarProdutoPorId(produtoId);
