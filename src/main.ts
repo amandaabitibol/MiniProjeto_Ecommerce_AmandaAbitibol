@@ -14,6 +14,9 @@ import { finalizarPedido, listarPedidos, listarPedidosPorCliente } from "./pedid
 
 import { listarClientes, buscarClientePorId, cadastrarCliente } from "./clientes";
 
+import { totalVendido, quantidadeDePedidos, produtosComEstoqueBaixo } from "./relatorios";
+
+
 console.log("=== Busca por id 2 ===");
 console.log(buscarProdutoPorId(2));
 
@@ -206,4 +209,12 @@ console.log(resultado.mensagem);
 console.log("--- Teste inválido: nome vazio ---");
 resultado = cadastrarCliente({ id: 6, nome: "", email: "semnome@email.com"});
 console.log(resultado.mensagem);
+
+console.log("");
+console.log("=== RELATÓRIOS ===");
+console.log("Total vendido: R$ " + totalVendido());
+console.log("Quantidade de pedidos: " + quantidadeDePedidos());
+console.log("Produtos com estoque baixo (até 15):");
+console.log(produtosComEstoqueBaixo(15));
+
 
