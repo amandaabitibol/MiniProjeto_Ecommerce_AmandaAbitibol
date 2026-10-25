@@ -8,7 +8,7 @@ import {
   removerProduto,
 } from "./produtos";
 
-import { adicionarAoCarrinho, listarCarrinho } from "./carrinho";
+import { adicionarAoCarrinho, listarCarrinho, removerDoCarrinho, alterarQuantidade } from "./carrinho";
 
 console.log("=== Busca por id 2 ===");
 console.log(buscarProdutoPorId(2));
@@ -102,4 +102,23 @@ resultado = adicionarAoCarrinho(5, 100);
 console.log(resultado.mensagem);
 
 console.log(" --- Itens do carrinho ---");
+console.log(listarCarrinho());
+
+console.log("--- Alterando a quantidade do produto 1 para 2 ---");
+resultado = alterarQuantidade(1, 2);
+console.log(resultado.mensagem);
+
+console.log("--- Teste inválido: alterar produto que não está no carrinho ---");
+resultado = alterarQuantidade(4, 3);
+console.log(resultado.mensagem);
+
+console.log("--- Removendo o produto 3 do carrinho ---");
+resultado = removerDoCarrinho(3);
+console.log(resultado.mensagem);
+
+console.log("--- Teste inválido: remover produto que não está no carrinho ---");
+resultado = removerDoCarrinho(3);
+console.log(resultado.mensagem);
+
+console.log("--- Carrinho depois das mudanças ---");
 console.log(listarCarrinho());

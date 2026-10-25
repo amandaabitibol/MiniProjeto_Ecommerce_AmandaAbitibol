@@ -38,12 +38,46 @@ export function adicionarAoCarrinho(produtoId: number, quantidade: number): Resu
 
 // Tira um produto do carrinho
 export function removerDoCarrinho(produtoId: number): Resultado {
-    return { sucesso: false, mensagem: "A fazer" };
+  let encontrou = false;
+  const novoCarrinho: ItemCarrinho[] = [];
+
+  for (const item of carrinho) {
+    if (item.produtoId === produtoId) {
+      encontrou = true;
+    } else {
+      novoCarrinho.push(item);
+    }
+  }
+
+  if (encontrou === false) {
+    return { sucesso: false, mensagem: "Erro: esse produto não está no carrinho." };
+  }
+
+  carrinho = novoCarrinho;
+  return { sucesso: true, mensagem: "Produto removido do carrinho." };
 }
 
-//Troca a quantidade de um produto que já está no carrinho
+// Troca a quantidade de um produto que já está no carrinho
 export function alterarQuantidade(produtoId: number, novaQuantidade: number): Resultado {
-    return { sucesso: false, mensagem: "A fazer" };
+  if (novaQuantidade <= 0) {
+    return { sucesso: false, mensagem: "Erro: a quantidade deve ser maior que zero." };
+  }
+
+  const produto = buscarProdutoPorId(produtoId);
+  if (produto === undefined) {
+    return { sucesso: false, mensagem: "Erro: produto não encontrado." };
+  }
+  if (novaQuantidade > produto.estoque) {
+    return { sucesso: false, mensagem: "Erro: quantidade maior que o estoque disponível." };
+  }
+
+  for (const item of carrinho) {
+    if (item.produtoId === produtoId) {
+      item.quantidade = novaQuantidade;
+      return { sucesso: true, mensagem: "Quantidade alterada com sucesso." };
+    }
+  }
+  return { sucesso: false, mensagem: "Erro: esse produto não está no carrinho." };
 }
 
 export function listarCarrinho(): ItemCarrinho[] {
