@@ -10,7 +10,7 @@ import {
 
 import { adicionarAoCarrinho, listarCarrinho, removerDoCarrinho, alterarQuantidade, calcularSubtotal, calcularTotal } from "./carrinho";
 
-import { finalizarPedido, listarPedidos } from "./pedidos";
+import { finalizarPedido, listarPedidos, listarPedidosPorCliente } from "./pedidos";
 
 console.log("=== Busca por id 2 ===");
 console.log(buscarProdutoPorId(2));
@@ -159,5 +159,24 @@ resultado = finalizarPedido(1);
 console.log(resultado.mensagem);
 
 console.log("--- Pedidos registrados ---");
+console.log(listarPedidos());
+
+console.log("--- Pedidos do cliente 1 ---");
+console.log(listarPedidosPorCliente(1));
+
+console.log("--- Pedidos do cliente 2 (ainda não comprou) ---");
+console.log(listarPedidosPorCliente(2));
+
+console.log("--- Teste: estoque insuficiente (não pode registrar pela metade) ---");
+adicionarAoCarrinho(3, 1);
+adicionarAoCarrinho(5, 10);
+atualizarProduto(5, "Caderno Pontilhado A5", "Cadernos", 34.9, 5);
+resultado = finalizarPedido(2);
+console.log(resultado.mensagem);
+
+console.log("--- Produto 3 continua com o estoque 15? ---");
+console.log(buscarProdutoPorId(3));
+
+console.log("--- Pedidos registrados (deve continuar só 1) ---");
 console.log(listarPedidos());
 

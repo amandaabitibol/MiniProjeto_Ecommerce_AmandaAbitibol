@@ -75,3 +75,15 @@ export function finalizarPedido(clienteId: number): Resultado {
 export function listarPedidos(): Pedido[] {
     return pedidos;
 }
+
+// Devolve só os pedidos de um cliente
+export function listarPedidosPorCliente(clienteId: number): Pedido[] {
+  const resultado: Pedido[] = [];
+
+  for (const pedido of pedidos) {
+    if (pedido.clienteId === clienteId) {
+      resultado.push(pedido);
+    }
+  }
+  return resultado;
+}
