@@ -8,6 +8,8 @@ import {
   removerProduto,
 } from "./produtos";
 
+import { adicionarAoCarrinho, listarCarrinho } from "./carrinho";
+
 console.log("=== Busca por id 2 ===");
 console.log(buscarProdutoPorId(2));
 
@@ -71,3 +73,33 @@ console.log(resultado.mensagem);
 
 console.log("=== Lista final de produtos ===");
 console.log(listarProdutos());
+
+console.log("");
+console.log("=== CARRINHO ===");
+
+console.log("--- Adicionando 2 unidades do produto 1 ---");
+resultado = adicionarAoCarrinho(1, 2);
+console.log(resultado.mensagem);
+
+console.log(" --- Adicionando mais 3 unidades do produto 1 ---");
+resultado = adicionarAoCarrinho(1, 3)
+console.log(resultado.mensagem);
+
+console.log(" --- Adicionando 1 unidade do produto 3 ---");
+resultado = adicionarAoCarrinho(3, 1);
+console.log(resultado.mensagem);
+
+console.log(" --- Teste inválido: quantidade zero ---");
+resultado = adicionarAoCarrinho(2, 0);
+console.log(resultado.mensagem);
+
+console.log(" --- Teste inválido: produto que não existe ---");
+resultado = adicionarAoCarrinho(99, 1);
+console.log(resultado.mensagem);
+
+console.log("--- Teste inválido: quantidade maior que o estoque ---");
+resultado = adicionarAoCarrinho(5, 100);
+console.log(resultado.mensagem);
+
+console.log(" --- Itens do carrinho ---");
+console.log(listarCarrinho());
