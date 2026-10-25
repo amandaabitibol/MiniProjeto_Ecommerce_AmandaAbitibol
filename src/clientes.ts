@@ -1,4 +1,4 @@
-import { Cliente } from "./types";
+import { Cliente, Resultado } from "./types";
 
 // Clientes iniciais para facilitar os testes (o enunciado pede pelo menos 3)
 const clientes: Cliente[] = [
@@ -9,9 +9,9 @@ const clientes: Cliente[] = [
 
 // Procura um cliente pelo id. Se não achar, devolve undefined (nada).
 export function buscarClientePorId(id: number): Cliente | undefined {
-  for (let i = 0; i < clientes.length; i++) {
-    if (clientes[i].id === id) {
-      return clientes[i];
+  for (const cliente of clientes) {
+    if (cliente.id === id) {
+      return cliente;
     }
   }
   return undefined;
@@ -19,34 +19,30 @@ export function buscarClientePorId(id: number): Cliente | undefined {
 
 // Responde true (sim) ou false (não): esse e-mail já existe na lista?
 function emailJaCadastrado(email: string): boolean {
-  for (let i = 0; i < clientes.length; i++) {
-    if (clientes[i].email === email) {
+  for (const cliente of clientes) {
+    if (cliente.email === email) {
       return true;
     }
   }
   return false;
 }
 
-export function cadastrarCliente(cliente: Cliente): boolean {
+export function cadastrarCliente(cliente: Cliente): Resultado {
   if (cliente.nome === "") {
-    console.log("Erro: o nome do cliente deve ser informado.");
-    return false;
+        return { sucesso: false, mensagem: "Erro: o nome do cliente deve ser informado." };
   }
   if (cliente.email === "") {
-    console.log("Erro: o e-mail do cliente deve ser informado.");
-    return false;
+    return { sucesso: false, mensagem: "Erro: o e-mail do cliente deve ser informado." };
   }
   if (buscarClientePorId(cliente.id) !== undefined) {
-    console.log("Erro: já existe um cliente com o id " + cliente.id + ".");
-    return false;
+    return { sucesso: false, mensagem: "Erro: já existe um cliente com o id " + cliente.id + "." };
   }
   if (emailJaCadastrado(cliente.email) === true) {
-    console.log("Erro: já existe um cliente com o e-mail " + cliente.email + ".");
-    return false;
+    return { sucesso: false, mensagem: "Erro: já existe um cliente com o e-mail " + cliente.email + "." };
   }
 
   clientes.push(cliente);
-  return true;
+  return { sucesso: true, mensagem: "Cliente cadastrado com sucesso!" };
 }
 
 export function listarClientes(): Cliente[] {

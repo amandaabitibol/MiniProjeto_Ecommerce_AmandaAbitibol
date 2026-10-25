@@ -12,6 +12,8 @@ import { adicionarAoCarrinho, listarCarrinho, removerDoCarrinho, alterarQuantida
 
 import { finalizarPedido, listarPedidos, listarPedidosPorCliente } from "./pedidos";
 
+import { listarClientes, buscarClientePorId, cadastrarCliente } from "./clientes";
+
 console.log("=== Busca por id 2 ===");
 console.log(buscarProdutoPorId(2));
 
@@ -179,4 +181,29 @@ console.log(buscarProdutoPorId(3));
 
 console.log("--- Pedidos registrados (deve continuar só 1) ---");
 console.log(listarPedidos());
+
+console.log("");
+console.log("=== CLIENTES ===");
+
+console.log("--- Lista de clientes ---");
+console.log(listarClientes());
+
+console.log("--- Busca de cliente por id 2 ---");
+console.log(buscarClientePorId(2));
+
+console.log("--- Cadastrando novo cliente ---");
+resultado = cadastrarCliente({ id: 4, nome: "Beatriz Lima", email: "beatriz.lima@email.com" });
+console.log(resultado.mensagem);
+
+console.log("--- Teste inválido: e-mail repetido ---");
+resultado = cadastrarCliente({ id: 5, nome: "Outra Pessoa", email: "mariana.souza@email.com" });
+console.log(resultado.mensagem);
+
+console.log("--- Teste inválido: id repetido ---");
+resultado = cadastrarCliente({ id: 1, nome: "Repetida", email: "repetida@email.com" });
+console.log(resultado.mensagem);
+
+console.log("--- Teste inválido: nome vazio ---");
+resultado = cadastrarCliente({ id: 6, nome: "", email: "semnome@email.com"});
+console.log(resultado.mensagem);
 
