@@ -4,11 +4,7 @@ import { Produto } from "./types";
 
 //Soma o total de todos os pedidos registrados
 export function totalVendido(): number {
-    let total = 0;
-    for (const pedido of listarPedidos()) {
-        total = total + pedido.total;
-    }
-    return total;
+    return listarPedidos().reduce((soma, pedido) => soma + pedido.total, 0);
 }
 
 //Conta quantos pedidos foram feitos

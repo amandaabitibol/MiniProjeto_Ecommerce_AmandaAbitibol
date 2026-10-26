@@ -9,15 +9,10 @@ let produtos: Produto[] = [
     {id: 5, nome: "Caderno Pontilhado A5", categoria: "Cadernos", preco: 34.9, estoque: 12},
 ];
 
-// Procura um produto pelo id
+// Procura um produto pelo id (find devolve o primeiro que combina, ou undefined)
 export function buscarProdutoPorId(id: number): Produto | undefined {
-    for (const produto of produtos) {
-        if (produto.id === id) {
-            return produto;
+    return produtos.find((produto)=> produto.id === id);
         }
-    }
-  return undefined;
-}
 
 // Cadastra um novo produto 
 export function cadastrarProduto(produto: Produto): Resultado {
@@ -56,14 +51,7 @@ export function buscarProdutosPorNome(nome: string): Produto[] {
 
 // Lista só os produtos de uma categoria
 export function filtrarPorCategoria(categoria: string): Produto[] {
-    const resultado: Produto[] = [];
-
-    for (const produto of produtos) {
-        if (produto.categoria === categoria) {
-            resultado.push(produto);
-        }
-    }
-    return resultado;
+    return produtos.filter((produto) => produto.categoria === categoria);
 }
 
 // Altera os dados de um produto
